@@ -5,14 +5,41 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/users',['uses' => 'UserController@getUser']); //LISTUSER - show all user records
+// COURSE CONTROLLER ROUTES
 
-$router->get('/guser/{id}', 'UserController@getID'); //GETIDUSER - gets user by id
+$router->get('/getcourses',['uses' => 'CourseController@getCourses']); //getCourses - SHOW ALL COURSES
 
-$router->post('/auser', 'UserController@addUser'); //ADDUSER - creates a new user
+$router->get('/getcourse/{id}', 'CourseController@getCourseID'); //getCourseID - GET COURSE BY ID
 
-$router->put('/uuser/{id}', 'UserController@updateUser');  //UPDATEUSER - updates user records with put
+$router->post('/addcourse', 'CourseController@addCourse'); //addCourse - CREATE NEW COURSE
 
-$router->patch('/uuser/{id}', 'UserController@updateUser');  //UPDATEUSER - updates user records with patch
+$router->put('/updatecourse/{id}', 'CourseController@updateCourse');  //updateCourse - UPDATE COURSE USING PUT
 
-$router->delete('/duser/{id}', 'UserController@deleteUser'); //DELETEUSER - delete an existing user
+$router->delete('/deletecourse/{id}', 'CourseController@deleteCourse'); //deleteCourse - DELETE COURSE
+
+
+// SUBJECT CONTROLLER ROUTES
+
+$router->get('/getsubjects',['uses' => 'SubjectController@getSubjects']); //getSubjects - SHOW ALL SUBJECTS
+
+$router->get('/getsubject/{id}', 'SubjectController@getSubjectID'); //getSubjectID - GET SUBJECT BY ID
+
+$router->post('/addsubject', 'SubjectController@addSubject'); //addSubject - CREATE NEW SUBJECT
+
+$router->put('/updatesubject/{id}', 'SubjectController@updateSubject');  //updateSubject - UPDATE COURSE USING PUT
+
+$router->delete('/deletesubject/{id}', 'SubjectController@deleteSubject'); //deleteSubject - DELETE COURSE
+
+
+// STUDENT COURSE CONTROLLER ROUTES
+
+$router->get('/courseenrollees','StudentCourseListController@index'); //index - GET ALL LIST OF ENROLLEES'
+
+$router->get('/courseenrollee/{id}','StudentCourseListController@getCourseEnrolled'); //getCourseEnrolled - GET ENROLLED STUDENT BY ID
+
+
+// TEACHER COURSE CONTROLLER ROUTES
+
+$router->get('/courseassignees','TeacherCourseListController@index'); //index - GET ALL LIST OF ASSIGNEES'
+
+$router->get('/courseassignee/{id}','TeacherCourseListController@getCourseAssigned'); //getCourseAssigned - GET ASSIGNED TEACHER BY ID
